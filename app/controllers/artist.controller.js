@@ -29,7 +29,7 @@ exports.create = (req, res) => {
 };
 // Retrieve all Artists from the database.
 exports.findAll = (req, res) => {
-  Artist.findAll()
+  Artist.findAll({ include: ["album"] })
     .then(data => {
       res.send(data);
     })
@@ -43,7 +43,7 @@ exports.findAll = (req, res) => {
 // Find a single Artist with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  Artist.findByPk(id)
+  Artist.findByPk(id,{ include: ["album"] })
     .then(data => {
       if (data) {
         res.send(data);
