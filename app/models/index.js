@@ -23,4 +23,10 @@ db.album.belongsTo(db.artist, {
   foreignKey: "artistId",
   as: "artist",
 });
+db.album.hasMany(db.track, { as: "track" });
+db.track.belongsTo(db.album, {
+  foreignKey: "albumId",
+  as: "album",
+});
+
 module.exports = db;

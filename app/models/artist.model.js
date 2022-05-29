@@ -5,10 +5,7 @@ module.exports = (sequelize, Sequelize) => {
     },
     artist_type: {
       type: Sequelize.STRING
-    },
-    artist_image: {
-      type: Sequelize.BLOB("long"),
-    },
+    }
   });
   return Atrist;
 };

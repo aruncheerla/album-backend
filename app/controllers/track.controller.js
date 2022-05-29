@@ -12,25 +12,39 @@ exports.create = (req, res) => {
   }
   // Create a Track
   const track = {
-    artist_name: req.body.artistName,
     track_name: req.body.trackName,
-    duration:req.body.duration
+    duration:req.body.duration,
+    track_side:req.body.trackSide,
+    link_audio:req.body.linkAudio,
+    link_lyrics:req.body.linkLyrics,
+    albumId:req.body.albumId
+
   };
   // Save Track in the database
-  Track.create(track)
+  Track.findOne({where: {track_name:req.body.trackName}})
+  .then(data => {
+    if(data != undefined){
+      res.status(409).send({
+        message: "Track already exists. Please enter valid track details"
+      });
+    }else{
+      Track.create(track)
     .then(data => {
       res.send(data);
     })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Track."
-      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while creating the Track."
     });
+  });
 };
+ 
 // Retrieve all Tracks from the database.
 exports.findAll = (req, res) => {
-  Track.findAll()
+  Track.findAll({ include: ["album"] })
     .then(data => {
       res.send(data);
     })
@@ -44,7 +58,7 @@ exports.findAll = (req, res) => {
 // Find a single Track with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  Track.findByPk(id)
+  Track.findByPk(id,{ include: ["album"] })
     .then(data => {
       if (data) {
         res.send(data);
