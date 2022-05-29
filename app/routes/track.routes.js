@@ -13,4 +13,5 @@ module.exports = app => {
     router.delete("/track/:id", track.delete);
     // Delete all Track
     router.delete("/tracks", track.deleteAll);
+    app.use('/api/v1', router);
   };

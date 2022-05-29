@@ -16,16 +16,25 @@ exports.create = (req, res) => {
     artist_type: req.body.artistType
   };
   // Save Artist in the database
-  Artist.create(artist)
+  Artist.findOne({where: {artist_name:req.body.artistName}})
+  .then(data => {
+    if(data != undefined){
+      res.status(409).send({
+        message: "Artist already exists. Please enter valid artist details"
+      });
+    }else{
+      Artist.create(artist)
     .then(data => {
       res.send(data);
     })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Artist."
-      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while creating the Artist."
     });
+  });
 };
 // Retrieve all Artists from the database.
 exports.findAll = (req, res) => {
