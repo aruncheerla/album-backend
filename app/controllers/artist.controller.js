@@ -69,30 +69,8 @@ exports.findOne = (req, res) => {
     });
 };
 // Find Artist with artist name
-exports.findArtistByName = (req, res) => {
-  const artist_name = req.params.artistName;
-  Artist.findAll({where: {artist_name:req.params.artistName}})
-    .then(data => {
-      console.log("data is: "+data.Artist.artistName);
-      if (data) {
-        res.send(data);
-      } else {
-        res.status(404).send({
-          message: `Cannot find Artist with artist name=${artist_name}.`
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Error retrieving Artist with artist name=" + artist_name
-      });
-    });
-};
-
-// Retrieve all Lessons from the database.
 exports.findAllArtist = (req, res) => {
   const artist_name = req.params.artistName;
-  
   var condition = artist_name ? {
     artist_name: {
       [Op.like]: `%${artist_name}%`
@@ -106,7 +84,7 @@ exports.findAllArtist = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving lessons."
+          err.message || "Some error occurred while retrieving artist."
       });
     });
 };
