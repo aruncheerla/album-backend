@@ -7,6 +7,8 @@ module.exports = app => {
   router.get("/", artist.findAll);
   // Retrieve a single Artist with id
   router.get("/:id", artist.findOne);
+  // Retrieve Artist with Name
+  router.get("/search/:artistName", artist.findAllArtist);
   // Update a Artist with id
   router.put("/:id", artist.update);
   // Delete a Artist with id
