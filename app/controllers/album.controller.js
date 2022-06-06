@@ -15,6 +15,9 @@ exports.create = (req, res) => {
     album_name: req.body.albumName,
     album_year: req.body.albumYear,
     album_genre: req.body.albumGenre,
+    album_description: req.body.albumDescription,
+    album_artist: req.body.albumArtist,
+    album_image: req.body.albumImage,
     artistId: req.body.artistId
   };
   // Save Album in the database

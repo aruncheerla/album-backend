@@ -8,6 +8,15 @@ module.exports = (sequelize, Sequelize) => {
       },
       album_genre: {
         type: Sequelize.STRING
+      },
+      album_description: {
+        type: Sequelize.STRING
+      },
+      album_artist: {
+        type: Sequelize.STRING
+      },
+      album_image: {
+        type: Sequelize.STRING
       }
     });
     return Album;

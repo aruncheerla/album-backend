@@ -3,16 +3,22 @@ module.exports = (sequelize, Sequelize) => {
       track_name: {
         type: Sequelize.STRING
       },
-      duration: {
+      track_album: {
         type: Sequelize.STRING
       },
-      track_side: {
+      track_number: {
         type: Sequelize.STRING
       },
-      link_audio: {
+      track_length: {
         type: Sequelize.STRING
       },
-      link_lyrics: {
+      track_description: {
+        type: Sequelize.STRING
+      },
+      track_audio: {
+        type: Sequelize.STRING
+      },
+      track_lyrics: {
         type: Sequelize.STRING
       }
     });

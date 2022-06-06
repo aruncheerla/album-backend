@@ -13,6 +13,7 @@ exports.create = (req, res) => {
   // Create a Artist
   const artist = {
     artist_name: req.body.artistName,
+    artist_image: req.body.artistImage,
     artist_type: req.body.artistType
   };
   // Save Artist in the database

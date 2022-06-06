@@ -13,10 +13,12 @@ exports.create = (req, res) => {
   // Create a Track
   const track = {
     track_name: req.body.trackName,
-    duration:req.body.duration,
-    track_side:req.body.trackSide,
-    link_audio:req.body.linkAudio,
-    link_lyrics:req.body.linkLyrics,
+    track_album:req.body.trackAlbum,
+    track_number:req.body.trackNumber,
+    track_length:req.body.trackLength,
+    track_description:req.body.trackDescription,
+    track_audio:req.body.trackAudio,
+    track_lyrics:req.body.trackLyrics,
     albumId:req.body.albumId
 
   };

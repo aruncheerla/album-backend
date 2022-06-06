@@ -1,7 +1,7 @@
 module.exports = {
-  HOST: "localhost",
-  USER: "root",
-  PASSWORD: "mysql@root",
+  HOST: "pathshaladb.cpw4f0jmuwaw.ap-south-1.rds.amazonaws.com",
+  USER: "admin",
+  PASSWORD: "Ravi_311",
   DB: "album_db",
   dialect: "mysql",
   pool: {
