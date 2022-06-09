@@ -9,6 +9,8 @@ module.exports = app => {
     router.get("/:id", album.findOne);
     // Update a Album with id
     router.put("/:id", album.update);
+     // Retrieve Artist with Name
+    router.get("/search/:albumName", album.findAllAlbum);
     // Delete a Album with id
     router.delete("/:id", album.delete);
     // Delete all Album

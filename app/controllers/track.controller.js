@@ -21,6 +21,7 @@ exports.create = (req, res) => {
     track_lyrics:req.body.trackLyrics,
     albumId:req.body.albumId
 
+
   };
   // Save Track in the database
   Track.findOne({where: {track_name:req.body.trackName}})
@@ -119,6 +120,26 @@ exports.delete = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message: "Could not delete Track with id=" + id
+      });
+    });
+};
+// Find Artist with artist name
+exports.findAllTrack = (req, res) => {
+  const track_name = req.params.trackName;
+  var condition = track_name ? {
+    track_name: {
+      [Op.like]: `%${track_name}%`
+    }
+  } : null;
+
+  Track.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving artist."
       });
     });
 };

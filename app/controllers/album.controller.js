@@ -138,3 +138,23 @@ exports.findAll = (req, res) => {
         });
       });
   };
+  // Find Artist with artist name
+exports.findAllAlbum = (req, res) => {
+  const album_name = req.params.albumName;
+  var condition = album_name ? {
+    album_name: {
+      [Op.like]: `%${album_name}%`
+    }
+  } : null;
+
+  Album.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving artist."
+      });
+    });
+};

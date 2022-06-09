@@ -12,6 +12,8 @@ module.exports = app => {
     // Delete a Track with id
     router.delete("/:id", track.delete);
     // Delete all Track
+    // Retrieve Artist with Name
+    router.get("/search/:trackName", track.findAllTrack);
     router.delete("/", track.deleteAll);
     app.use('/api/track', router);
   };
