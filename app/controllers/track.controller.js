@@ -14,6 +14,7 @@ exports.create = (req, res) => {
   const track = {
     track_name: req.body.trackName,
     track_album:req.body.trackAlbum,
+    track_artist:req.body.trackArtist,
     track_number:req.body.trackNumber,
     track_length:req.body.trackLength,
     track_description:req.body.trackDescription,
@@ -129,6 +130,40 @@ exports.findAllTrack = (req, res) => {
   var condition = track_name ? {
     track_name: {
       [Op.like]: `%${track_name}%`
+    }
+  } : null;
+
+  Track.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving artist."
+      });
+    });
+};
+// Find Artist with artist name
+exports.findAllTrackForAlbums = (req, res) => {
+  const albumId = req.params.albumId;
+  Track.findAll({ where: { albumId: albumId } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving artist."
+      });
+    });
+};
+// Find Artist with artist name
+exports.findAllTrackForArtist = (req, res) => {
+  const track_artist = req.params.artistName;
+  var condition = track_artist ? {
+    track_artist: {
+      [Op.like]: `%${track_artist}%`
     }
   } : null;
 

@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
     track_album: {
       type: Sequelize.STRING
     },
+    track_artist: {
+      type: Sequelize.STRING
+    },
     track_number: {
       type: Sequelize.STRING
     },
